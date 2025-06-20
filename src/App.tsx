@@ -20,7 +20,12 @@ function App() {
 
     try {
       const numericFeatures = features.map(Number);
-      const res = await axios.post("http://localhost:5000/predict", {
+      // const res = await axios.post("http://localhost:5000/predict", {
+      //   features: numericFeatures,
+      // });
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+      const res = await axios.post(`${API_URL}/predict`, {
         features: numericFeatures,
       });
       setPrediction(res.data.prediction);
